@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.logHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.logHeader ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logHeader ul li {
+    margin-left: 20px;
+}
+
+.logHeader ul li a {
+    display: flex;
+    align-items: center;
+}
+
+.logHeader ul li a:hover {
+    color: #777;
+}
+
+.logHeader ul li a svg {
+    margin-right: 5px;
+}
+
+.heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.heading p {
+    color: var(--color-primary)
+}
+
+.form,
+.content {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+.form-group label {
+    text-align: left;
+    display: block;
+    margin: 0 0 5px 3px;
+}
+
+.btn-block svg {
+    margin-right: 8px;
+}
+
+.btn-reverse {
+    background: #fff;
+    color: #000;
+}
+
+.btn-block {
+    width: 100%;
+    color: var(--color-bg) ;
+    background: var(--color-primary);
+    padding: 0.75rem 1.2rem ;
+    border-radius: 0.4rem ;
+    cursor: pointer ;
+    border: 1px solid var(--color-primary) ;
+    transition: var(--trasition) ;
+}
+
+.btn-block:hover {
+    background: var(--color-white) ;
+    color: var(--color-bg) ;
+    border-color: transparent ;
+    transform: scale(0.98);
+}
+
+.loadingSpinnerContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingSpinner {
+    width: 64px;
+    height: 64px;
+    border: 8px solid;
+    border-color: #000 transparent #555 transparent;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .form {
+        width: 90%;
+    }
+
+    .heading h1 {
+        font-size: 2rem;
+    }
+
+    .heading p {
+        font-size: 1.5rem;
+    }
+}

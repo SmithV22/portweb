@@ -1,0 +1,16 @@
+
+footer {
+    width: 100% ;
+    font-size: 0.8rem ;
+    color: var(--color-primary) ;
+    padding-bottom: .5rem ;
+}
+
+.footer__valedictions {
+    display: flex;
+    justify-content: space-between ;
+    align-items: center ;
+    padding: 0 .5rem  1.5rem .5rem ;
+    
+}
+
