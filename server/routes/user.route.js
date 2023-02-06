@@ -1,9 +1,9 @@
 
 import express from 'express' ;
 import { registerUser, loginUser, currentUser } from '../controllers/user.controller.js' ;
+import protect from '../middleware/authMiddleware' ;
 
 const router = express.Router() ;
-const { protect } = '../middleware/authMiddleware' ;
 
 router.post('/register', registerUser) ;
 router.post('/login', loginUser) ;
