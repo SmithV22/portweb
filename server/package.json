@@ -1,7 +1,8 @@
 {
-  "name": "DeveloperPortfolio",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server"
@@ -21,4 +22,5 @@
     "mongoose": "^6.9.0",
     "react-router-dom": "^6.8.0"
   }
+  
 }
