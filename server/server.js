@@ -3,7 +3,7 @@ import colors from 'colors' ;
 import cors from 'cors' ;
 import * as dotenv from 'dotenv' ;
 const { errorHandler } = require('./middleware/errorMiddleware') ;
-import connectDB from './config/mongoose.config';
+import connectDB from './config/mongoose.config.js';
 const userRoutes = require('./routes/user.route') ;
 
 const app = express() ;
