@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs' ;
 import asyncHandler from 'express-async-handler' ;
 const User = '../models/user.model' ;
 
-const registerUser = asyncHandler(async (req, res) => {
+export const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
 
     if(!firstName || !lastName || !email || !password) {
@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-const loginUser = asyncHandler(async (req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email })
     
@@ -58,7 +58,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-const currentUser = asyncHandler(async (req, res) => {
+export const currentUser = asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 }) ;
 
@@ -66,8 +66,3 @@ const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' })
 } ;
 
-export default {
-    registerUser,
-    loginUser,
-    currentUser,
-} ;
