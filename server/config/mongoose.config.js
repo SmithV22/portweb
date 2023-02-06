@@ -1,5 +1,5 @@
 
-const mongoose = require('mongoose') ;
+import mongoose from 'mongoose' ;
 const db = process.env.MONGO_URI ;
 
 const connectDB = (db) => {
