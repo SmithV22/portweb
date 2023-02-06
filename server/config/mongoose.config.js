@@ -6,7 +6,7 @@ const connectDB = (db) => {
     try {
         mongoose.set('strictQuery', true);
         mongoose.connect(db) ;
-        console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline) ;
+        console.log(`MongoDB Connected: ${connection.host}`.cyan.underline) ;
     } catch (error) {
         console.log(error) ;
         process.exit(1)
