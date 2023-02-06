@@ -3,8 +3,8 @@ import colors from 'colors' ;
 import cors from 'cors' ;
 import * as dotenv from 'dotenv' ;
 import connectDB from '../server/config/mongoose.config.js' ;
-const { errorHandler } = require('./middleware/errorMiddleware') ;
-const userRoutes = require('./routes/user.route.js') ;
+import errorHandler from './middleware/errorMiddleware.js' ;
+const userRoutes = './routes/user.route.js' ;
 
 const app = express() ;
 const port =  process.env.PORT || 5000;
