@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {  toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import CV from '../../assets/febRes.pdf' ;
+import CV from '../../assets/febres.pdf' ;
 
 const Cta = () => {
 
@@ -18,7 +18,7 @@ const Cta = () => {
             ) : (
                 <button className=' btn' onClick={ alert }>Download CV</button>
                 )} 
-            <a href="#contact" className='btn btn-primary'>Chat With Me</a>
+            <a href="#contact" download className='btn btn-primary'>Chat With Me</a>
         </div>
     )
 }

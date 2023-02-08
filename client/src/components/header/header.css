@@ -84,6 +84,10 @@ header {
     width: 600px;
 }
 
+.spinnerText {
+    color: silver;
+}
+
 @media screen and (max-width: 1024px) {
     header {
         height: 68vh ;

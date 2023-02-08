@@ -1,8 +1,9 @@
+import '../../components/header/header.css' ;
 
 const Spinner = () => {
     return (
         <div className="loadingSpinnerContainer">
-            <div className="loadingSpinner"></div>
+            <div className="loadingSpinner spinnerText"> Please Wait...</div>
         </div>
     )
 }
