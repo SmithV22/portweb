@@ -12,7 +12,7 @@ export const registerUser = asyncHandler(async (req, res) => {
         throw new Error('Please complete all fields')
     } ;
     
-    const userExists = await User.find({ email })
+    const userExists = await User.findOne({ email })
     if(userExists) {
         res.status(400)
         throw new Error('Email already exists')
@@ -43,7 +43,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 
 export const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    const user = await User.find({ email })
+    const user = await User.findOne({ email })
     
     if(user && (await bcrypt.compare(password, user.password))) {
         res.json({
