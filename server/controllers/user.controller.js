@@ -12,7 +12,7 @@ export const registerUser = asyncHandler(async (req, res) => {
         throw new Error('Please complete all fields')
     } ;
     
-    const userExists = await User.findOne({ email })
+    const userExists = await User.find({ email })
     if(userExists) {
         res.status(400)
         throw new Error('Email already exists')

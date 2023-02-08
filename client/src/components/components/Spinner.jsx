@@ -3,7 +3,8 @@ import '../../components/header/header.css' ;
 const Spinner = () => {
     return (
         <div className="loadingSpinnerContainer">
-            <div className="loadingSpinner spinnerText"> Please Wait...</div>
+            <h1 className='spinnerText'> Please Wait...</h1>
+            <div className="loadingSpinner"> </div>
         </div>
     )
 }
