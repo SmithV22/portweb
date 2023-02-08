@@ -23,28 +23,28 @@ const Portfolio = () => {
                 image: People,
                 title: 'Single Page - reactjs',
                 github: 'https://github.com/SmithV22/practice',
-                demo: 'https://www.react.neiasoftwaredesign.com'
+                demo: 'https://demoreact.neiasoftwaredesign.com'
             },
             {
                 id: 2,
                 image: Programming,
                 title: 'School Project - full stack MERN',
                 github: 'https://github.com/SmithV22/todo-mern',
-                demo: 'https://www.todo.neiasoftwaredesign.com'
+                demo: 'https://todo.neiasoftwaredesign.com'
             },
             {
                 id: 3,
                 image: Button,
                 title: 'HTML Email ',
                 github: 'https://github.com/SmithV22/fitbit-example',
-                demo: 'https://www.html.neiasoftwaredesign.com'
+                demo: 'https://demoemail.neiasoftwaredesign.com'
             },
             {
                 id: 4,
                 image: World,
-                title: 'School Project - Java',
+                title: 'School Project - Java coming soon',
                 github: 'https://github.com/SmithV22/javaProduct',
-                demo: 'https://www.javaproduct.neiasoftwaredesign.com'
+                demo: 'https://javaproduct.neiasoftwaredesign.com'
             },
             {
                 id: 5,

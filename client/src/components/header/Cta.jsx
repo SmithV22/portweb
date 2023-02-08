@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {  toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
-import CV from '../../assets/neiaResume2.pdf'
+import CV from '../../assets/febRes.pdf' ;
 
 const Cta = () => {
 
