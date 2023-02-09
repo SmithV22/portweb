@@ -1,5 +1,5 @@
 
-import mongoose from 'mongoose' ;
+const mongoose = require('mongoose') ;
 const db = process.env.MONGO_URI ;
 
 const connectDB = () => {
@@ -13,4 +13,7 @@ const connectDB = () => {
     }
 } ;
 
-export default connectDB ;
+module.exports = {
+    connectDB,
+    default: connectDB,
+} 

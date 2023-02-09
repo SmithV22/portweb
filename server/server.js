@@ -14,9 +14,8 @@ dotenv.config() ;
 
 app.use(cors()) ;
 app.use(express.json({ limit: '50mb' }));
-app.use(cors({credentials: true, origin: 'http://localhost:3000' || 'https:neiasoftwaredesign.com'})) ;
 app.use(express.urlencoded({ extended: false })) ;
-app.use('/api/user', userRoutes) ;
+app.use('/api/user', require(userRoutes)) ;
 app.use(errorHandler) ;
 
 
