@@ -9,8 +9,6 @@ import { login, reset } from '../../features/auth/authSlice' ;
 import Spinner from '../components/Spinner';
 import LogHeader from './LogHeader' ;
 import './LoginReg.css' ;
-
-
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -47,7 +45,6 @@ const Login = () => {
             password
         }
         dispatch(login(userData)) ;
-        
     }
 
     if (isLoading) {
