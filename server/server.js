@@ -6,9 +6,10 @@ import connectDB from '../server/config/mongoose.config.js' ;
 import errorHandler from './middleware/errorMiddleware.js' ;
 import userRoutes from './routes/user.route.js' ;
 
-const app = express() ;
 const port =  process.env.PORT || 5000;
+connectDB() ;
 
+const app = express() ;
 dotenv.config() ;
 
 app.use(cors()) ;
@@ -18,6 +19,5 @@ app.use(express.urlencoded({ extended: false })) ;
 app.use('/api/user', userRoutes) ;
 app.use(errorHandler) ;
 
-connectDB() ;
 
 app.listen(port, () => console.log(`Server started on port ${port}`)) ;
