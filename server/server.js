@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config() ;
 const { errorHandler } = require('./middleware/errorMiddleware') ;
 const connectDB = require('./config/mongoose.config') ;
 
-import userRoutes from './routes/user.route.js' ;
+const userRoutes = require('./routes/user.route.js') ;
 
 const port =  process.env.PORT || 5000;
 connectDB() ;
