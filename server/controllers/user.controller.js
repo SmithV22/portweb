@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-export const loginUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email })
     
@@ -58,7 +58,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-export const currentUser = asyncHandler(async (req, res) => {
+const currentUser = asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 }) ;
 
