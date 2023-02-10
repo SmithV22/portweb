@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs') ;
 const asyncHandler = require('express-async-handler') ;
 const User = require('../models/user.model') ;
 
-export const registerUser = asyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
 
     if(!firstName || !lastName || !email || !password) {
