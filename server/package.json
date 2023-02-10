@@ -2,7 +2,6 @@
   "name": "server",
   "version": "1.0.0",
   "description": "neia api",
-  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server"
