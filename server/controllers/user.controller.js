@@ -4,12 +4,11 @@ const bcrypt = require('bcryptjs') ;
 const asyncHandler = require('express-async-handler') ;
 const User = require('../models/user.model') ;
 
+const id = id.toString() ;
+
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
-    const generateToken = (id) => {
-        return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
-    } ;
-
+    
     if(!firstName || !lastName || !email || !password) {
         res.status(400)
         throw new Error('Please complete all fields')
@@ -23,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
     
     const salt = await bcrypt.genSalt(10) ;
     const hashedPassword = await bcrypt.hash(password, salt) ;
-
+    
     const user = await User.create({
         firstName,
         lastName,
@@ -46,11 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    const user = await User.findOne({ email })
-    const generateToken = (id) => {
-        return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
-    } ;
-    
+        
     if(user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
@@ -64,15 +59,19 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+} ;
+
 const currentUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({
         email }) ;
-    res.status(200).json(req.user)
-}) ;
-
-const allUsers = asyncHandler(async (req, res) => {
-    const users = await User.find({})
-    res.status(200).json(users) ;
+        res.status(200).json(req.user)
+    }) ;
+    
+    const allUsers = asyncHandler(async (req, res) => {
+        const users = await User.find({})
+        res.status(200).json(users) ;
 })
 
 
