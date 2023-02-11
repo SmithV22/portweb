@@ -69,8 +69,9 @@ const allUsers = asyncHandler(async (req, res) => {
     res.status(200).json(users) ;
 })
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' })
+const generateToken = () => {
+    return jwt.sign({ id: currentUser._id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+    
 } ;
 
 module.exports = {
