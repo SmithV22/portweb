@@ -6,6 +6,9 @@ const User = require('../models/user.model') ;
 
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
+    const generateToken = (id) => {
+        return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+    } ;
 
     if(!firstName || !lastName || !email || !password) {
         res.status(400)
@@ -44,6 +47,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email })
+    const generateToken = (id) => {
+        return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+    } ;
     
     if(user && (await bcrypt.compare(password, user.password))) {
         res.json({
@@ -69,10 +75,6 @@ const allUsers = asyncHandler(async (req, res) => {
     res.status(200).json(users) ;
 })
 
-const generateToken = () => {
-    return jwt.sign({ id: currentUser._id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
-    
-} ;
 
 module.exports = {
     registerUser,
