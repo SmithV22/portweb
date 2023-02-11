@@ -4,8 +4,6 @@ const bcrypt = require('bcryptjs') ;
 const asyncHandler = require('express-async-handler') ;
 const User = require('../models/user.model') ;
 
-const id = id.toString() ;
-
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
     
@@ -45,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-        
+    
     if(user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
@@ -60,6 +58,7 @@ const loginUser = asyncHandler(async (req, res) => {
 }) ;
 
 const generateToken = (id) => {
+    const id = id.toString() ;
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
 } ;
 
