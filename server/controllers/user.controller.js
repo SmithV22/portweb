@@ -58,9 +58,16 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-const currentUser = () => asyncHandler(async (req, res) => {
+const currentUser = asyncHandler(async (req, res) => {
+    const user = await User.findOne({
+        email }) ;
     res.status(200).json(req.user)
 }) ;
+
+const allUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({})
+    res.status(200).json(users) ;
+})
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' })
@@ -70,7 +77,9 @@ module.exports = {
     registerUser,
     loginUser,
     currentUser,
+    allUsers,
     default: registerUser,
     default: loginUser,
     default: currentUser,
+    defualt: allUsers,
 } ;
