@@ -57,7 +57,8 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-const generateToken = ({id}) => {
+const generateToken = (id) => {
+    id = id.toString() ;
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
 } ;
 
