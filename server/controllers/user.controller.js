@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken') ;
 const bcrypt = require('bcryptjs') ;
 const asyncHandler = require('express-async-handler') ;
 const User = require('../models/user.model') ;
-
 const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body
     
@@ -33,8 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            // token: generateToken(user._id)
-            token: jwt.sign({ email: result.email, id: result._id}, 'test', { expiresIn: '1h'} ) ,
+            token: generateToken(user._id)
         })
     } else {
         res.status(400)
@@ -50,8 +48,7 @@ const loginUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
-            // token: generateToken(user._id),
-            token: jwt.sign({ email: existingUser.email, id: existingUser._id },'test', {expiresIn: '1h' })
+            token: generateToken(user._id),
         })
     } else {
         res.status(400)
@@ -59,10 +56,10 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-// const generateToken = (id) => {
-//     id = id.toString() ;
-//     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
-// } ;
+const generateToken = (userId) => {
+    const userId = id.toString();
+    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+} ;
 
 const currentUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({
@@ -73,11 +70,11 @@ const currentUser = asyncHandler(async (req, res) => {
     const allUsers = asyncHandler(async (req, res) => {
         const users = await User.find({})
         res.status(200).json(users) ;
-})
-
-
-module.exports = {
-    registerUser,
+    })
+    
+    
+    module.exports = {
+        registerUser,
     loginUser,
     currentUser,
     allUsers,
