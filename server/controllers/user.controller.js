@@ -5,17 +5,17 @@ const asyncHandler = require('express-async-handler') ;
 const User = require('../models/user.model') ;
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body
+    const { firstName, lastName, email, password } = req.body ;
     
     if(!firstName || !lastName || !email || !password) {
         res.status(400)
         throw new Error('Please complete all fields')
     } ;
     
-    const userExists = await User.findOne({ email })
+    const userExists = await User.findOne({ email }) ;
     if(userExists) {
         res.status(400)
-        throw new Error('Email already exists')
+        throw new Error('Email already exists') ;
     } ;
     
     const salt = await bcrypt.genSalt(10) ;
@@ -26,14 +26,14 @@ const registerUser = asyncHandler(async (req, res) => {
         lastName,
         email,
         password: hashedPassword,
-    })
+    }) ;
     if (user) {
         res.status(201).json({
             _id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: generateToken(user._id)
+            token: jwt.sign({ email: existingUser.email, id: existingUser._id },'test', {expiresIn: '1h' })
         })
     } else {
         res.status(400)
@@ -45,11 +45,12 @@ const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body ;
     const user = await User.findOne({ email }) ;
     if(user && (await bcrypt.compare(password, user.password))) {
+        
         res.json({
             _id: user.id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id),
+            token: jwt.sign({ email: existingUser.email, id: existingUser._id },'test', {expiresIn: '1h' }),
         })
     } else {
         res.status(400)
@@ -57,10 +58,10 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 }) ;
 
-const generateToken = (userId) => {
+// const generateToken = () => {
     
-    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
-} ;
+//     return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1d' }) ;
+// } ;
 
 const currentUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({
