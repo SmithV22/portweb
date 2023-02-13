@@ -8,8 +8,8 @@ const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, email, password } = req.body ;
     
     if(!firstName || !lastName || !email || !password) {
-        res.status(400)
-        throw new Error('Please complete all fields')
+        res.status(400) ;
+        throw new Error('Please complete all fields') ;
     } ;
     
     const userExists = await User.findOne({ email }) ;
@@ -33,11 +33,10 @@ const registerUser = asyncHandler(async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: jwt.sign({ email: existingUser.email, id: existingUser._id },'test', {expiresIn: '1h' })
         })
     } else {
-        res.status(400)
-        throw new Error('Invalid user data')
+        res.status(400) ;
+        throw new Error('Invalid user data') ;
     }
 }) ;
 
@@ -45,16 +44,16 @@ const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body ;
     const user = await User.findOne({ email }) ;
     if(user && (await bcrypt.compare(password, user.password))) {
-        
-        res.json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: jwt.sign({ email: existingUser.email, id: existingUser._id },'test', {expiresIn: '1h' }),
-        })
+        const accessToken = jwt.sign({
+            user: {
+                id: user.id,
+                email: user.email,
+            },
+    }, process.env.JWT_SECRET) ;
+        res.json(200).json({ accessToken })  ;
     } else {
-        res.status(400)
-        throw new Error('Invalid credentials')
+        res.status(401) ;
+        throw new Error('Invalid credentials') ;
     }
 }) ;
 
@@ -64,8 +63,6 @@ const loginUser = asyncHandler(async (req, res) => {
 // } ;
 
 const currentUser = asyncHandler(async (req, res) => {
-    const user = await User.findOne({
-        email }) ;
         res.status(200).json(req.user)
     }) ;
     
