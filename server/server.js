@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser') ;
 const { errorHandler } = require('./middleware/errorMiddleware') ;
 const { connectDB } = require('./config/mongoose.config') ;
 
-
 const port =  process.env.PORT || 5000;
 connectDB() ;
 
