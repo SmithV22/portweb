@@ -4,9 +4,8 @@
   "description": "neia api",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
-    "type": "module"
-  },
+    "start": "nodemon server"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
